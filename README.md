@@ -4,7 +4,7 @@ abra a raiz do projeto:
 
 pip install .
 
-tasak tun
+task tun
 
 
 
