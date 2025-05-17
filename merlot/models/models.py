@@ -1,6 +1,12 @@
 from merlot.config.database import db
-from sqlalchemy import Enum, Gender, MedicState, ExamState, VisitState
+from merlot.config.enum_types import Gender, MedicState, ExamState, VisitState
 import datetime
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128), nullable=False)
+    email = db.Column(db.String(128), unique=True, nullable=False)
+
 
 class Patient(db.Model):
     __tablename__ = 'patient'
@@ -19,7 +25,7 @@ class Medic(db.Model):
     email = db.Column(db.String(128), unique=True)
     phone = db.Column(db.String(20))
     dt_birth = db.Column(db.String(20))
-    gender = db.Column(db.Enum('male', 'female', name='gender_enum'))
+    gender = db.Column(db.Enum(Gender, name='gender_enum'))
     m_state = db.Column(db.Enum(MedicState, name='medic_state_enum'))
 
 
