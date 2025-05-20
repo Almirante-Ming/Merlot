@@ -5,19 +5,18 @@ from merlot.database.database import SessionLocal
 from merlot.models.paciente import Paciente
 from merlot.models.consulta import Consulta
 from merlot.models.medico import Medico
-from sqlalchemy.orm import joinedload  # import correto aqui
+from sqlalchemy.orm import joinedload
 
-# Lista de possíveis saudações
+
 SAUDACOES = ["oi", "olá", "ola", "bom dia", "boa tarde", "boa noite"]
 
-# Cria o blueprint
 bp = Blueprint('bot', __name__)
 
-# Função para detectar saudações
+
 def msg_saudacao(msg):
     return any(s in msg.lower() for s in SAUDACOES)
 
-# Função para buscar paciente
+
 def buscar_paciente(msg):
     db = SessionLocal()
     paciente = db.query(Paciente).filter(
