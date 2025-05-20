@@ -7,7 +7,6 @@ class User(db.Model):
     name = db.Column(db.String(128), nullable=False)
     email = db.Column(db.String(128), unique=True, nullable=False)
 
-
 class Patient(db.Model):
     __tablename__ = 'patient'
     id = db.Column(db.Integer, primary_key=True)
